@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_tambah) {
 
         } else if (id == R.id.nav_semua_teman) {
-
+            keHalaman(getApplicationContext(), AllFriends.class);
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
@@ -184,5 +186,9 @@ public class MainActivity extends AppCompatActivity
         Intent i = new Intent(c,cls);
         startActivity(i);
     }
+//    @Override
+//    public void onBackPressed() {
+//        Toast.makeText(this,"Anda sudah di halaman utama", Toast.LENGTH_SHORT).show();
+//    }
 
 }

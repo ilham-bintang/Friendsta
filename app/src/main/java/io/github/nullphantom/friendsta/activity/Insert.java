@@ -1,5 +1,6 @@
 package io.github.nullphantom.friendsta.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ public class Insert extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Insert Friends");
     }
 
     @Override
@@ -26,5 +28,11 @@ public class Insert extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 }

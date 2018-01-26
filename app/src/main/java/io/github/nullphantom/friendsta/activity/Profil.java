@@ -19,4 +19,9 @@ public class Profil extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
 }

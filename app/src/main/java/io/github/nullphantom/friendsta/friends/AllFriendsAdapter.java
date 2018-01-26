@@ -60,7 +60,7 @@ public class AllFriendsAdapter extends ArrayAdapter<Friends> {
             vh.textViewName.setText(item.getNama());
             vh.textViewEmail.setText(item.getEmail());
             vh.textViewNoHp.setText(item.getNo_hp());
-            Picasso.with(context).load(getImageId(context, item.getGambar())).placeholder(android.R.drawable.btn_plus).error(android.R.drawable.btn_default_small).into(vh.imageView);
+            Picasso.with(context).load(getImageId(context, item.getGambar())).placeholder(android.R.drawable.ic_input_add).error(android.R.drawable.btn_default_small).into(vh.imageView);
 
             return vh.rootView;
         }
