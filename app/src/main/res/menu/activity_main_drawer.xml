@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Teman">
+        <menu>
+            <item
+                android:id="@+id/nav_profilku"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="Profilku" />
+            <item
+                android:id="@+id/nav_tambah"
+                android:icon="@drawable/ic_add_black_24dp"
+                android:title="Tambah Teman" />
+            <item
+                android:id="@+id/nav_semua_teman"
+                android:icon="@drawable/ic_people_black_24dp"
+                android:title="Semua Teman" />
+
+        </menu>
+    </item>
+
+    <item android:title="Lainnya">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Pengaturan" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Bagikan" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="Keluar" />
+        </menu>
+    </item>
+
+</menu>
