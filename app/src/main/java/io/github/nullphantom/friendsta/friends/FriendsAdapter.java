@@ -1,19 +1,27 @@
 package io.github.nullphantom.friendsta.friends;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import io.github.nullphantom.friendsta.R;
+import io.github.nullphantom.friendsta.activity.AllFriends;
 import io.github.nullphantom.friendsta.activity.MainActivity;
+import io.github.nullphantom.friendsta.activity.Profil;
 
 /**
  * Created by Ilham Bintang on 26/01/2018.
@@ -33,6 +41,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
             name = view.findViewById(R.id.friends_name);
             hp = view.findViewById(R.id.no_hp);
             thumbnail = view.findViewById(R.id.thumbnail);
+            overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
@@ -50,12 +59,56 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Friends friends = friendsList.get(position);
+        final Friends friends = friendsList.get(position);
         holder.name.setText(friends.getNama());
         holder.hp.setText(friends.getNo_hp());
-
         Glide.with(mContext).load(getImageId(mContext, friends.getGambar())).into(holder.thumbnail);
 
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(mContext, Profil.class);
+                Long x = friends.getFriendsId();
+                Log.e("Item ID",x.toString());
+                in.putExtra("id", x);
+                mContext.startActivity(in);
+            }
+        });
+
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu(holder.overflow);
+            }
+        });
+    }
+    private void showPopupMenu(View view) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(mContext, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.card_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.show();
+    }
+
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+
+        public MyMenuItemClickListener() {
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.delete:
+                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.edit:
+                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                    return true;
+                default:
+            }
+            return false;
+        }
     }
 
     @Override

@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.nullphantom.friendsta.Database.FriendsOperation;
 import io.github.nullphantom.friendsta.R;
 import io.github.nullphantom.friendsta.friends.AllFriendsAdapter;
 import io.github.nullphantom.friendsta.friends.Friends;
@@ -24,6 +28,7 @@ public class AllFriends extends AppCompatActivity {
     private ListView listView;
     private AllFriendsAdapter adapter;
     private List<Friends> friendsList;
+    private FriendsOperation friendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +44,23 @@ public class AllFriends extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
         friendsList = new ArrayList<>();
 
-        Friends bintang = new Friends("Ilham Bintang", "friends_icon","ilham@m.c","0988", "L");
+        friendData = new FriendsOperation(this);
+        friendData.open();
+        friendsList = friendData.getFriends();
+        friendData.close();
 
-        friendsList.add(bintang);
         adapter = new AllFriendsAdapter(this, friendsList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent in = new Intent(AllFriends.this,Profil.class);
+                Long x = listView.getItemIdAtPosition(i);
+                in.putExtra("id", x+1);
+                startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -58,5 +75,4 @@ public class AllFriends extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
-
 }

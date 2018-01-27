@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,7 +14,7 @@
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
-            android:background="@color/background"
+            android:background="@color/colorAccentLight"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -49,6 +48,16 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/overflow"
+                android:layout_width="@dimen/ic_album_overflow_width"
+                android:layout_height="@dimen/ic_album_overflow_height"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/thumbnail"
+                android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_more_vert_black_24dp" />
 
         </RelativeLayout>
 
