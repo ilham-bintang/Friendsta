@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import io.github.nullphantom.friendsta.Database.FriendsOperation;
 import io.github.nullphantom.friendsta.R;
 import io.github.nullphantom.friendsta.activity.AllFriends;
 import io.github.nullphantom.friendsta.activity.MainActivity;
@@ -78,29 +79,43 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.overflow);
+                Long x = friends.getFriendsId();
+                showPopupMenu(holder.overflow,x);
             }
         });
     }
-    private void showPopupMenu(View view) {
+    private void showPopupMenu(View view, long id) {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.card_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener(id));
         popup.show();
     }
 
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+        long id;
+        FriendsOperation friendData;
+        Friends f;
 
-        public MyMenuItemClickListener() {
+        public MyMenuItemClickListener(long id) {
+            this.id =id;
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.delete:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+
+                    friendData = new FriendsOperation(mContext);
+                    friendData.open();
+                    friendData.deleteFriend(id);
+                    friendData.close();
+                    Toast.makeText(mContext, "Berhasil di hapus : " + id, Toast.LENGTH_SHORT).show();
+
+                    Intent in = new Intent(mContext, MainActivity.class);
+
+                    mContext.startActivity(in);
                     return true;
                 case R.id.edit:
                     Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();

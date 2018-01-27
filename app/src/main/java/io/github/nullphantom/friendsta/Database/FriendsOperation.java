@@ -103,8 +103,8 @@ public class FriendsOperation {
         }
 
         // Deleting Employee
-        public void deleteFriend(Friends friends) {
-            database.delete(DBHelper.TABLE_FRIEND, DBHelper.COLUMN_ID + "=" + friends.getFriendsId(), null);
+        public void deleteFriend(long id) {
+            database.delete (DBHelper.TABLE_FRIEND, DBHelper.COLUMN_ID + "=" + Long.toString(id), null);
         }
 }
 
