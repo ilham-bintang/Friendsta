@@ -39,7 +39,7 @@ public class AllFriends extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
         friendsList = new ArrayList<>();
 
-        Friends bintang = new Friends("Ilham Bintang", "friends_icon","ilham@m.c","0988");
+        Friends bintang = new Friends("Ilham Bintang", "friends_icon","ilham@m.c","0988", "L");
 
         friendsList.add(bintang);
         adapter = new AllFriendsAdapter(this, friendsList);

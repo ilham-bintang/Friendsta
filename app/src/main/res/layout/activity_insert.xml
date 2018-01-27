@@ -45,6 +45,7 @@
             android:textSize="20dp"
             />
         <EditText
+            android:id="@+id/nama"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
     </LinearLayout>
@@ -62,6 +63,7 @@
             android:textSize="20dp"
             />
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
     </LinearLayout>
@@ -79,8 +81,38 @@
             android:textSize="20dp"
             />
         <EditText
+            android:id="@+id/no_hp"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="Jenis Kelamin: "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            />
+        <RadioGroup
+            android:id="@+id/jenis_kelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/laki_laki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laki-Laki"/>
+            <RadioButton
+                android:id="@+id/perempuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perempuan"/>
+        </RadioGroup>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +127,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="pilih gambar"
-            android:background="@color/colorAccentLight"/>
+            android:background="@color/colorAccentLight"
+            android:onClick="pilihGambar"/>
 
         <ImageView
             android:layout_width="120dp"
@@ -113,5 +146,6 @@
         android:layout_marginRight="20dp"
         android:text="simpan"
         android:textColor="@color/white"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent"
+        android:onClick="simpan"/>
 </LinearLayout>

@@ -18,11 +18,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import io.github.nullphantom.friendsta.Database.FriendsOperation;
 import io.github.nullphantom.friendsta.friends.Friends;
 import io.github.nullphantom.friendsta.friends.FriendsAdapter;
 import io.github.nullphantom.friendsta.R;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private FriendsAdapter adapter;
     private List<Friends> friendsList;
+    private FriendsOperation friendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(getApplicationContext(),Insert.class);
-//
-//                startActivity(i);
                 keHalaman(getApplicationContext(), Insert.class);
             }
         });
@@ -63,7 +60,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         recyclerView = findViewById(R.id.recycler_view);
-        friendsList = new ArrayList<>();
+
+
+        friendData = new FriendsOperation(this);
+        friendData.open();
+        friendsList = friendData.getFriends();
+        friendData.close();
+
         adapter = new FriendsAdapter(this, friendsList);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
@@ -72,7 +75,6 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
 
         prepareFriends();
-
 
     }
 
@@ -117,13 +119,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_profilku) {
             keHalaman(getApplicationContext(), Profil.class);
         } else if (id == R.id.nav_tambah) {
-
+            keHalaman(getApplicationContext(), Insert.class);
         } else if (id == R.id.nav_semua_teman) {
             keHalaman(getApplicationContext(), AllFriends.class);
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
-
+            shareApp();
         } else if (id == R.id.nav_logout) {
             keHalaman(getApplicationContext(), Login.class);
         }
@@ -133,12 +135,21 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void shareApp() {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Mari berteman di Friendsta! Klik : http://nullphantom.github.io";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Friendsta");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
     private void prepareFriends() {
         int[] covers = new int[]{
                 R.drawable.friends_icon};
 
-        Friends a = new Friends("Bintang", "contoh","ilham@g.com","0878658858");
-        friendsList.add(a);
+//        Friends a = new Friends("Bintang", "contoh","ilham@g.com","0878658858");
+//        friendsList.add(a);
 
         adapter.notifyDataSetChanged();
     }
@@ -186,9 +197,4 @@ public class MainActivity extends AppCompatActivity
         Intent i = new Intent(c,cls);
         startActivity(i);
     }
-//    @Override
-//    public void onBackPressed() {
-//        Toast.makeText(this,"Anda sudah di halaman utama", Toast.LENGTH_SHORT).show();
-//    }
-
 }
