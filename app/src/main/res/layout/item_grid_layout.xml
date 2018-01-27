@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,9 +11,11 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:elevation="3dp"
+
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
+            android:background="@color/background"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -22,7 +25,8 @@
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:scaleType="fitXY" />
+                android:src="@drawable/friends_icon"
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/friends_name"
@@ -32,18 +36,19 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/album_title"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/no_hp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/no_hp"
+                android:layout_below="@id/friends_name"
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:textSize="@dimen/songs_count" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
 
         </RelativeLayout>
 

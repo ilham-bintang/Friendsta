@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity
 
         recyclerView = findViewById(R.id.recycler_view);
 
-
         friendData = new FriendsOperation(this);
         friendData.open();
         friendsList = friendData.getFriends();
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setAdapter(adapter);
 
-        prepareFriends();
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -142,16 +141,6 @@ public class MainActivity extends AppCompatActivity
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Friendsta");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
-    }
-
-    private void prepareFriends() {
-        int[] covers = new int[]{
-                R.drawable.friends_icon};
-
-//        Friends a = new Friends("Bintang", "contoh","ilham@g.com","0878658858");
-//        friendsList.add(a);
-
-        adapter.notifyDataSetChanged();
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

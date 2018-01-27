@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import io.github.nullphantom.friendsta.R;
+import io.github.nullphantom.friendsta.activity.MainActivity;
 
 /**
  * Created by Ilham Bintang on 26/01/2018.
@@ -53,12 +54,16 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
         holder.name.setText(friends.getNama());
         holder.hp.setText(friends.getNo_hp());
 
-        Glide.with(mContext).load(friends.getGambar()).into(holder.thumbnail);
+        Glide.with(mContext).load(getImageId(mContext, friends.getGambar())).into(holder.thumbnail);
 
     }
 
     @Override
     public int getItemCount() {
         return friendsList.size();
+    }
+
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }
