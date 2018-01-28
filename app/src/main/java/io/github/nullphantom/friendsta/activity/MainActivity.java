@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            keHalaman(getApplicationContext(), About.class);
             return true;
         }
 
@@ -159,8 +160,8 @@ public class MainActivity extends AppCompatActivity
             keHalaman(getApplicationContext(), Insert.class);
         } else if (id == R.id.nav_semua_teman) {
             keHalaman(getApplicationContext(), AllFriends.class);
-        } else if (id == R.id.nav_settings) {
-
+        } else if (id == R.id.nav_about) {
+            keHalaman(getApplicationContext(), About.class);
         } else if (id == R.id.nav_share) {
             shareApp();
         } else if (id == R.id.nav_logout) {

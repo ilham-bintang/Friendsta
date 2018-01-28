@@ -21,6 +21,7 @@ import java.util.List;
 import io.github.nullphantom.friendsta.Database.FriendsOperation;
 import io.github.nullphantom.friendsta.R;
 import io.github.nullphantom.friendsta.activity.AllFriends;
+import io.github.nullphantom.friendsta.activity.Insert;
 import io.github.nullphantom.friendsta.activity.MainActivity;
 import io.github.nullphantom.friendsta.activity.Profil;
 
@@ -116,7 +117,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
                     mContext.startActivity(i);
                     return true;
                 case R.id.edit:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                    Intent in = new Intent(mContext,Insert.class);
+                    in.putExtra("id",id);
+                    mContext.startActivity(in);
                     return true;
                 default:
             }
