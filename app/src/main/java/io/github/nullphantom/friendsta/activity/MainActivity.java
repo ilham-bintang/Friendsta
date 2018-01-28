@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity
         friendsList = friendData.getFriends();
         friendData.close();
 
+        addToAdapter(friendsList);
+
+    }
+
+    private void addToAdapter(List<Friends> friendsList) {
         adapter = new FriendsAdapter(this, friendsList);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
@@ -80,8 +85,6 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
-
-
     }
 
     private void initCollapsingToolbar() {
@@ -114,12 +117,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     @Override

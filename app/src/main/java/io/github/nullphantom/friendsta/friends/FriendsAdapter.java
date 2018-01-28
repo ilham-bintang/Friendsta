@@ -112,10 +112,8 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.MyViewHo
                     friendData.deleteFriend(id);
                     friendData.close();
                     Toast.makeText(mContext, "Berhasil di hapus : " + id, Toast.LENGTH_SHORT).show();
-
-                    Intent in = new Intent(mContext, MainActivity.class);
-
-                    mContext.startActivity(in);
+                    Intent i = new Intent(mContext,MainActivity.class);
+                    mContext.startActivity(i);
                     return true;
                 case R.id.edit:
                     Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
